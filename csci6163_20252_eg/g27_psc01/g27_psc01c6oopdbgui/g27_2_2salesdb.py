@@ -34,18 +34,46 @@ class SQLiteDBAccess:
     # (typically ISO 8601 string: "YYYY-MM-DD").
     # '''
     def retrieve_sales_by_date_region(self, sales_date: date, region_code: str) -> Optional[Sales]:
-        pass
+        conn = self.__connect()
+        if conn:
+            cursor = conn.cursor()
+            query = '''SELECT ID, amount, salesDate, region
+                        FROM sales
+                        WHERE salesDate = ? AND region = ?'''
+            cursor.execute(query,(sales_date.isoformat(), region_code))
+            sales_record = cursor.fetchone()
+            conn.close()
+
+            if sales_record:
+                return Sales(sales_record[1], # amount
+                             sales_record[2], # sales_date
+                             self._valid_regions.get_region_by_code(sales_record[3]), # region
+                             sales_record[0] # id
+                             )
+            else:
+                return None
+
     def update_sales(self, sales: Sales) -> None:
-        pass
+        conn = self.__connect()
+        with closing(conn.cursor()) as cur:
+            query = '''UPDATE Sales 
+                       SET amount = ?, salesDate = ?, region = ?
+                       WHERE ID = ?'''
+            cur.execute(query, (sales["amount"], 
+                                sales["sales_date"].isoformat(), 
+                                sales["region"].code, 
+                                sales["ID"]))
+            conn.commit()
+
     # ------------- Region table--------------
     def retrieve_regions(self) -> Optional[Regions]:
-        conn = self.__connect()     # Step 1: Create a connection
+        conn = self.__connect()                         # Step 1: Create a connection
         if conn:
-            cursor = conn.cursor()  # Step 2: Create a cursor
-            query = '''SELECT code, name FROM Region'''  # Step 3: Create a query
-            cursor.execute(query)   # Step 4: Execute query
-            records = cursor.fetchall()    # Step 5: Fetch the result set
-            conn.close()         # Step 6: Release the resource
+            cursor = conn.cursor()                      # Step 2: Create a cursor
+            query = '''SELECT code, name FROM Region''' # Step 3: Create a query
+            cursor.execute(query)                       # Step 4: Execute query
+            records = cursor.fetchall()                 # Step 5: Fetch the result set
+            conn.close()                                # Step 6: Release the resource
             if records:
                 regions = Regions([], [])
                 for record in records:
