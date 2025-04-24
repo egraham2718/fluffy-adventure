@@ -123,8 +123,6 @@ def import_all_sales() -> list:
                         }
                 sales_list.append(data)
         return sales_list  # within with statement
-    
-    return sales_list
 
 
 @import_sales.register

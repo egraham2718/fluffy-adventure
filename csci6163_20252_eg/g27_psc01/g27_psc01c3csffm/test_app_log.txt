@@ -5,9 +5,9 @@ Test the 'add1' command for adding sales with detailed input validation. ... ok
 test_add2_command (__main__.TestSalesDataImporter.test_add2_command)
 Test the 'add2' command for adding sales with detailed input validation. ... ok
 test_exit_command (__main__.TestSalesDataImporter.test_exit_command)
-Test the 'exit' command to terminate the application. ... FAIL
+Test the 'exit' command to terminate the application. ... ok
 test_import_command (__main__.TestSalesDataImporter.test_import_command)
-Test the 'import' command with valid and invalid filenames. ... FAIL
+Test the 'import' command with valid and invalid filenames. ... ok
 test_invalid_menu_command (__main__.TestSalesDataImporter.test_invalid_menu_command)
 Test an invalid command to redisplay the menu. ... ok
 test_menu_command (__main__.TestSalesDataImporter.test_menu_command)
@@ -15,27 +15,7 @@ Test the 'menu' command to redisplay the menu. ... ok
 test_view_command (__main__.TestSalesDataImporter.test_view_command)
 Test the 'view' command to display sales data. ... ok
 
-======================================================================
-FAIL: test_exit_command (__main__.TestSalesDataImporter.test_exit_command)
-Test the 'exit' command to terminate the application.
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "C:\Users\egraham5\Desktop\Python\csci6163_20252_eg\g27_psc01\g27_psc01c3csffm\test_app.py", line 67, in test_exit_command
-    self.assertIn("Saved sales records.\nBye!\n", stdout)
-    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AssertionError: 'Saved sales records.\nBye!\n' not found in 'SALES DATA IMPORTER\n\nCOMMAND MENU\nview   - View all sales\nadd1   - Add sales by typing sales, year, month, day, and region\nadd2   - Add sales by typing sales, date (YYYY-MM-DD), and region\nimport - Import sales from file\nmenu   - Show menu\nexit   - Exit program\n\nPlease enter a command: Bye!\n'
+Ran 7 tests in 3.350s
 
-======================================================================
-FAIL: test_import_command (__main__.TestSalesDataImporter.test_import_command)
-Test the 'import' command with valid and invalid filenames.
-----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "C:\Users\egraham5\Desktop\Python\csci6163_20252_eg\g27_psc01\g27_psc01c3csffm\test_app.py", line 236, in test_import_command
-    self.assertIn(step, stdout)
-    ~~~~~~~~~~~~~^^^^^^^^^^^^^^
-AssertionError: 'No sales to view.\n\nPlease enter a command: ' not found in "SALES DATA IMPORTER\n\nCOMMAND MENU\nview   - View all sales\nadd1   - Add sales by typing sales, year, month, day, and region\nadd2   - Add sales by typing sales, date (YYYY-MM-DD), and region\nimport - Import sales from file\nmenu   - Show menu\nexit   - Exit program\n\nPlease enter a command: Enter name of file to import: Filename 'region1' doesn't follow the expected format of sales_qn_yyyy_r.csv.\n\nPlease enter a command: Enter name of file to import: Filename 'sales_q1_2021_x.csv' doesn't include one of the following region codes: ['w', 'm', 'c', 'e'].\n\nPlease enter a command: Enter name of file to import: File 'sales_q2_2021_w.csv' has already been imported.\n\nPlease enter a command: Enter name of file to import: File 'sales_q3_2021_w.csv' has already been imported.\n\nPlease enter a command: Enter name of file to import: File 'sales_q4_2021_w.csv' has already been imported.\n\nPlease enter a command: Enter name of file to import: File 'sales_q4_2021_w.csv' has already been imported.\n\nPlease enter a command: Bye!\n"
-
-----------------------------------------------------------------------
-Ran 7 tests in 0.509s
-
-FAILED (failures=2)
+OK

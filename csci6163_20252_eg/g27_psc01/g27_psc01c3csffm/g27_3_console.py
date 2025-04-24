@@ -34,6 +34,7 @@ def execute_command() -> None:
         action = input("\nPlease enter a command: ").strip().lower()
         if action == "exit":
             save_all_sales(sales_list)
+            print("Saved sales records.\nBye!")
             break
         if action == "import":
             commands[action](sales_list)

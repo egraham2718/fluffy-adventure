@@ -34,18 +34,28 @@ def already_imported(filepath_name: Path) -> bool:
     """
     # Complete code here
     #return filepath_name.exists()
-    pass
+    try:
+        with open(FILEPATH / IMPORTED_FILES) as file:
+            files = [line.strip() for line in file.readlines()]
+            return str(filepath_name) in files
+    except FileNotFoundError:
+        return False
 
 
 def add_imported_file(filepath_name: Path) -> None:
     """Add the filepath_name into IMPORTED_FILES"""
     # Complete code here
-    with open(FILEPATH / IMPORTED_FILES, 'a') as file:
-        #csv_w = csv.writer(file)
+    # with open(FILEPATH / IMPORTED_FILES, 'a') as file:
+    #     #csv_w = csv.writer(file)
 
-        # ********* FIX THIS! ***************
-        #file.write(filepath_name)
-        print('add_imported_file(): ', filepath_name)
+    #     # ********* FIX THIS! ***************
+    #     #file.write(filepath_name)
+    #     print('add_imported_file(): ', filepath_name)
+    try:
+        with open(FILEPATH / IMPORTED_FILES, "a") as file:
+            file.write(f"{filepath_name}\n")
+    except Exception as e:
+        print(f"{type(e)} - The imported file could not be added.")
 
 @singledispatch
 def import_sales(filepath_name: Path, delimiter: str = ',') -> list:
