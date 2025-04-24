@@ -96,15 +96,59 @@ class SalesFrame(ttk.Frame):
                 v_sales_date = datetime.strptime(v_sales_date,
                                                 Sales.DATE_FORMAT).date()
                 if v_sales_date.year < Sales.MIN_YEAR or v_sales_date > Sales.MAX_YEAR:
-                    pass
+                    messagebox.showerror("Error", 
+                                 "Invalid year.\n"
+                                 f"A valid year is between {Sales.MIN_YEAR} and {Sales.MAX_YEAR}")
             except ValueError:
                 messagebox.showerror("Error", 
                                  f"{v_sales_date} is not in a valid date format\n"
                                  f"yyyy-mm-dd")
+            else:
+                regions = self._sqlite_dbaccess.retrieve_regions() # Returns list of Region objects
+                region_codes = tuple([region.code for region in regions])
+                if v_region_code not in region_codes:
+                    messagebox.showerror("Error", 
+                                 f"{v_region_code} is not one of the following \n"
+                                 f"region code: {region_codes}")
+                else:
+                    sales = self._sqlite_dbaccess.retrieve_sales_by_date_region(v_sales_date, v_region_code)
+                    if sales is None:
+                        self.id.set("")
+                        self.amount.set("")
+                        messagebox.showerror("Error", 
+                                 "No sales found")
+                    else:
+                        self.amount.set(sales["amount"])
+                        self.id.set(sales["ID"])
+                        self.sales_date_entry.config(state=tk.DISABLED)
+                        self.region_entry.config(state=tk.DISABLED)
+                        self.amount_entry.config(state=tk.ACTIVE)
+                        self.saveChanges_button.config(state=tk.NORMAL)
 
     def __save_changes(self):
-        pass
+        v_sales_date = self.sales_date.get()
+        v_region_code = self.region.get()
+        v_amount = self.amount.get()
+        v_id = self.id.get()
+        if v_id == '':
+            messagebox.showerror("Error", 
+                                 "No sales to save.")
+        elif v_amount == "":
+            messagebox.showerror("Error", 
+                                 "Please enter amount to save sales amount.")
+        else:
+            v_id = int(v_id)
+            v_amount = float(v_amount)
+            v_sales_date = datetime.strptime(v_sales_date, Sales.DATE_FORMAT).date()
 
+            regions = self._sqlite_dbaccess.retrieve_regions()
+            region = regions.get_region_by_code(v_region_code)
+            sales = Sales(v_amount, v_sales_date, region, v_id)
+            
+            self._sqlite_dbaccess.update_sales(sales)
+            messagebox.showinfo("Success",
+                                f"{str(sales)} is updated")
+            self.__clear_field()
 
 def main():
     root = tk.Tk()
