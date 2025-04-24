@@ -95,7 +95,7 @@ class SalesFrame(ttk.Frame):
             try:
                 v_sales_date = datetime.strptime(v_sales_date,
                                                 Sales.DATE_FORMAT).date()
-                if v_sales_date.year < Sales.MIN_YEAR or v_sales_date > Sales.MAX_YEAR:
+                if v_sales_date.year < Sales.MIN_YEAR or v_sales_date.year > Sales.MAX_YEAR:
                     messagebox.showerror("Error", 
                                  "Invalid year.\n"
                                  f"A valid year is between {Sales.MIN_YEAR} and {Sales.MAX_YEAR}")
