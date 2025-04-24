@@ -1,0 +1,91 @@
+
+~~~~~~~~~~ GROUP 27 REPORT ~~~~~~~~~~
+test_add1_command (__main__.TestSalesDataImporter.test_add1_command)
+Test the 'add1' command for adding sales with detailed input validation. ... FAIL
+test_add2_command (__main__.TestSalesDataImporter.test_add2_command)
+Test the 'add2' command for adding sales with detailed input validation. ... FAIL
+test_exit_command (__main__.TestSalesDataImporter.test_exit_command)
+Test the 'exit' command to terminate the application. ... FAIL
+test_import_command (__main__.TestSalesDataImporter.test_import_command)
+Test the 'import' command with valid and invalid filenames. ... FAIL
+test_invalid_menu_command (__main__.TestSalesDataImporter.test_invalid_menu_command)
+Test an invalid command to redisplay the menu. ... FAIL
+test_menu_command (__main__.TestSalesDataImporter.test_menu_command)
+Test the 'menu' command to redisplay the menu. ... FAIL
+test_view_command (__main__.TestSalesDataImporter.test_view_command)
+Test the 'view' command to display sales data. ... FAIL
+
+======================================================================
+FAIL: test_add1_command (__main__.TestSalesDataImporter.test_add1_command)
+Test the 'add1' command for adding sales with detailed input validation.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\egraham5\Desktop\Python\csci6163_20252_eg\g27_psc01\g27_psc01c3csffm\test_app.py", line 152, in test_add1_command
+    self.assertIn(step, stdout)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: 'Amount:             ' not found in ''
+
+======================================================================
+FAIL: test_add2_command (__main__.TestSalesDataImporter.test_add2_command)
+Test the 'add2' command for adding sales with detailed input validation.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\egraham5\Desktop\Python\csci6163_20252_eg\g27_psc01\g27_psc01c3csffm\test_app.py", line 182, in test_add2_command
+    self.assertIn(step, stdout)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: 'Amount:             ' not found in ''
+
+======================================================================
+FAIL: test_exit_command (__main__.TestSalesDataImporter.test_exit_command)
+Test the 'exit' command to terminate the application.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\egraham5\Desktop\Python\csci6163_20252_eg\g27_psc01\g27_psc01c3csffm\test_app.py", line 67, in test_exit_command
+    self.assertIn("Saved sales records.\nBye!\n", stdout)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Saved sales records.\nBye!\n' not found in ''
+
+======================================================================
+FAIL: test_import_command (__main__.TestSalesDataImporter.test_import_command)
+Test the 'import' command with valid and invalid filenames.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\egraham5\Desktop\Python\csci6163_20252_eg\g27_psc01\g27_psc01c3csffm\test_app.py", line 236, in test_import_command
+    self.assertIn(step, stdout)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: 'Enter name of file to import: ' not found in ''
+
+======================================================================
+FAIL: test_invalid_menu_command (__main__.TestSalesDataImporter.test_invalid_menu_command)
+Test an invalid command to redisplay the menu.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\egraham5\Desktop\Python\csci6163_20252_eg\g27_psc01\g27_psc01c3csffm\test_app.py", line 97, in test_invalid_menu_command
+    self.assertIn(key_expected_output, stdout)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Invalid command. Please try again.\n\nCOMMAND MENU\n' not found in ''
+
+======================================================================
+FAIL: test_menu_command (__main__.TestSalesDataImporter.test_menu_command)
+Test the 'menu' command to redisplay the menu.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\egraham5\Desktop\Python\csci6163_20252_eg\g27_psc01\g27_psc01c3csffm\test_app.py", line 82, in test_menu_command
+    self.assertIn(key_expected_output, stdout)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'COMMAND MENU\n' not found in ''
+
+======================================================================
+FAIL: test_view_command (__main__.TestSalesDataImporter.test_view_command)
+Test the 'view' command to display sales data.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\egraham5\Desktop\Python\csci6163_20252_eg\g27_psc01\g27_psc01c3csffm\test_app.py", line 115, in test_view_command
+    self.assertIn(key_expected_output, stdout)  # self.assertEqual(stdout, key_expected_output)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '     Date           Quarter        Region                  Amount\n-----------------------------------------------------------------\n1.' not found in ''
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.205s
+
+FAILED (failures=7)
