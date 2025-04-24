@@ -151,10 +151,4 @@ class SalesFrame(ttk.Frame):
             self.__clear_field()
 
 def main():
-    root = tk.Tk()
-    root.title("Edit Sales Amount")
-    SalesFrame(root)
-    root.mainloop()
-
-if __name__ == '__main__':
-    main()
+    pass
