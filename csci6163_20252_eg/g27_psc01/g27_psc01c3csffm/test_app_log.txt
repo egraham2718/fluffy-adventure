@@ -16,6 +16,6 @@ test_view_command (__main__.TestSalesDataImporter.test_view_command)
 Test the 'view' command to display sales data. ... ok
 
 ----------------------------------------------------------------------
-Ran 7 tests in 3.350s
+Ran 7 tests in 1.203s
 
 OK
