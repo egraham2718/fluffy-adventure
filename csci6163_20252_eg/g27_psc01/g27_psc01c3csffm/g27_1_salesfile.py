@@ -33,7 +33,6 @@ def already_imported(filepath_name: Path) -> bool:
     Otherwise, False.
     """
     # Complete code here
-    #return filepath_name.exists()
     try:
         with open(FILEPATH / IMPORTED_FILES) as file:
             files = [line.strip() for line in file.readlines()]
@@ -45,12 +44,6 @@ def already_imported(filepath_name: Path) -> bool:
 def add_imported_file(filepath_name: Path) -> None:
     """Add the filepath_name into IMPORTED_FILES"""
     # Complete code here
-    # with open(FILEPATH / IMPORTED_FILES, 'a') as file:
-    #     #csv_w = csv.writer(file)
-
-    #     # ********* FIX THIS! ***************
-    #     #file.write(filepath_name)
-    #     print('add_imported_file(): ', filepath_name)
     try:
         with open(FILEPATH / IMPORTED_FILES, "a") as file:
             file.write(f"{filepath_name}\n")
