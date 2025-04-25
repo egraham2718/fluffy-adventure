@@ -1,0 +1,49 @@
+Project folder layout:
+---------------------
+csci6163_20252_eg - Main project folder
+    g27_psc01
+        g27_psc01c2csff - earlier version of the project where file I/O was introduced
+        g27_psc01c3csffm - modular version of the project
+        g27_psc01c6oopdbgui - OOP, database, and GUI version of the project
+    psc01_db - stores database related files for database version of the project
+    psc01_files - stores the files used for the file I/O functionality of the project 
+
+
+-------------------------------------------------
+
+
+g27_psc01c3csffm (Module version):
+--------------------
+
+(After modularizing)
+What we had to complete:
+    initialize_content_of_files in salesmanager.py
+    save_all_sales in salesmanager.py
+    import_all_sales in salesmanager.py
+    add_sales2 in salesmanager.py
+    add_sales1 in salesmanager.py
+    add_imported_file in salesfile.py
+    already_imported in salesfile.py
+
+We didn't have to complete anything in salesinput.py or main.py
+In console.py we just had to add a print statement to the exit branch.
+
+The relationship between the python files we created:
+    main.py imports from console.py
+    console.py imports from salesmanager.py
+    salesmanager.py imports from both salesfile.py and salesinput.py
+    salesfile.py also imports from salesinput.py
+    salesinput.py does not import from the python files we created
+
+
+-------------------------------------------------
+
+
+g27_psc01c6oopdbgui (OOP, database, and GUI version):
+--------
+
+filetypes.py
+    class FileType 
+
+    (sub)class SalesFile extends FileType
+    (sub)class ImportedFile extends FileType

@@ -115,8 +115,6 @@ def import_all_sales() -> list:
                 # amount, sales_date = amount_sales_date[0], amount_sales_date[1]
                 correct_data_types(line)
                 amount, sales_date, region_code = line
-                #print('*************************')
-                #print(f'{amount=} {sales_date=} {region_code=}')
                 data = {"amount": amount,
                         "sales_date": sales_date,
                         "region": region_code,
@@ -159,9 +157,8 @@ def save_all_sales(sales_list, delimiter: str=',') -> None:
     Save the converted sales list which now is a list of lists into the file ALL_SALES.
     """
     # convert the list of dictionaries to a list of lists, using comprehension
-    #print(f'save_all_sales(): {sales_list=}')
     list_object = [[value for value in dict_obj.values()] for dict_obj in sales_list]
-    #print(f'save_all_sales(): {list_object=}')
+    
     # Save the converted sales list which now is a list of lists into the file ALL_SALES.
     with open(FILEPATH / ALL_SALES, 'w', newline='') as sales_file:
         csv_w = csv.writer(sales_file)
