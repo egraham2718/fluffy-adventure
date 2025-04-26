@@ -4,6 +4,7 @@ from typing import Optional
 from pathlib import Path
 from datetime import date
 import sqlite3
+from contextlib import closing
 
 class SQLiteDBAccess:
     def __init__(self, db_name: str='', db_path: Path=None):        
@@ -55,26 +56,26 @@ class SQLiteDBAccess:
 
     def update_sales(self, sales: Sales) -> None:
         conn = self.__connect()
-        cursor = conn.cursor()
-        query = '''UPDATE Sales 
-                   SET amount = ?, salesDate = ?, region = ?
-                   WHERE ID = ?'''
-        cursor.execute(query, (sales["amount"], 
-                                sales["sales_date"].isoformat(), 
-                                sales["region"].code, 
-                                sales["ID"]))
-        conn.commit()
-        conn.close()
-        
-        # with closing(conn.cursor()) as cur:
-        #     query = '''UPDATE Sales 
-        #                SET amount = ?, salesDate = ?, region = ?
-        #                WHERE ID = ?'''
-        #     cur.execute(query, (sales["amount"], 
+        # cursor = conn.cursor()
+        # query = '''UPDATE Sales 
+        #            SET amount = ?, salesDate = ?, region = ?
+        #            WHERE ID = ?'''
+        # cursor.execute(query, (sales["amount"], 
         #                         sales["sales_date"].isoformat(), 
         #                         sales["region"].code, 
         #                         sales["ID"]))
-        #     conn.commit()
+        # conn.commit()
+        # conn.close()
+        
+        with closing(conn.cursor()) as cur:
+            query = '''UPDATE Sales 
+                       SET amount = ?, salesDate = ?, region = ?
+                       WHERE ID = ?'''
+            cur.execute(query, (sales["amount"], 
+                                sales["sales_date"].isoformat(), 
+                                sales["region"].code, 
+                                sales["ID"]))
+            conn.commit()
 
     # ------------- Region table--------------
     def retrieve_regions(self) -> Optional[Regions]:
